@@ -16,9 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 from weatherapp import views
 
 urlpatterns = [
+    path('', RedirectView.as_view(url='/dashboard/', permanent=True)),
     path('admin/', admin.site.urls),
     path('api/', include('weatherapp.urls')),
     path('dashboard/', views.dashboard, name='dashboard'),
